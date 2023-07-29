@@ -4,7 +4,7 @@
     that:
       - exposed_ports is defined
 
-- name: "Allow port {{ item }} for VPN addresses"
+- name: "Allow port for VPN addresses only"
   ansible.builtin.iptables:
     chain: DOCKER-USER
     protocol: tcp
