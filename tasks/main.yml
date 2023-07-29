@@ -1,0 +1,15 @@
+---
+- name: Allow port 9000 for VPN addresses
+  ansible.builtin.iptables:
+    chain: DOCKER-USER
+    protocol: tcp
+    source_port: 9000
+    src_range: 192.168.254.1-192.168.254.255
+    jump: ALLOW
+
+- name: Disallow port 9000 for other addresses
+  ansible.builtin.iptables:
+    chain: DOCKER-USER
+    source_port: 9000
+    protocol: tcp
+    jump: DROP
